@@ -1,0 +1,71 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+/* this is for navigation bar*/
+.content{
+    display: grid;
+    max-width:1600px;
+    margin: 0 auto;
+    grid-template-columns: 0.3fr 2fr 0.3fr 0.3fr 0.3fr
+
+}
+/* apartments.com name anchor tag*/
+.main-name{
+    padding: 12px;
+    font-size:28px;
+    text-align:center;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    font-weight: 900;
+}
+a{
+    text-decoration: none;
+}
+/* rest other anchor tags*/
+.login, .register, .add-house, .auth-login, .auth-logout, .about-us{
+    background: 	#B8B8B8;
+    color: black;
+    text-align: center;
+    font-size:20px;
+    padding: 3px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+}
+/*background image class of home view*/
+.background-img{
+    position: absolute;
+}
+.banner{
+    position: relative;
+    font-size: 100px;
+    text-align: center;
+    margin: 50px 50px;
+    color: white;
+}
+.content-section{
+      background: #ffffff;
+  padding: 10px 20px;
+  border: 2px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+.message-alert{
+    margin: 0 0;
+}
+#mssg-alert{
+    margin: 0 0;
+    padding: 0 0;
+}
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+
+}
