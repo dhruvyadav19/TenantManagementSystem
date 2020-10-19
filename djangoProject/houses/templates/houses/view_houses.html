@@ -1,8 +1,66 @@
 {% extends 'pages/base.html' %}
 {% block content %}
+
+<style>
+  body{
+    font-family: 'Nunito Semibold';
+    text-align: center;
+  }
+  #content{
+    display: grid;
+    /*grid-template-columns: 30% 20% 50%;*/
+    /*grid-template-columns: 1fr 2fr 1fr;*/
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1800px;
+    margin: 0 auto;
+  }
+  #content div{
+    background-color: white;
+    padding: 30px;
+  }
+  .card-title, .card-text{
+    color: black;
+  }
+
+  h1 {
+    background-color: black;
+    color: white;
+  }
+</style>
+
+<!--
     {% for obj in house %}
-        <p>{{obj.house_number}}</p>
-        <p>{{obj.city}}</p>
-        <p>{{obj.user}}</p>
+  <div id="content">
+      <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{obj.city}}</h5>
+                <p class="card-text">{{obj.user}}</p>
+                <p class="card-text">{{obj.house_number}}</p>
+                <a href="{{obj.house_number}}" class="btn btn-primary">Information</a>
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
     {% endfor %}
+-->
+  
+
+  <h1>My Houses</h1>
+  <div id="content">
+  {% for obj in house %}
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{obj.city}}</h5>
+              <p class="card-text">{{obj.user}}</p>
+              <p class="card-text">{{obj.house_number}}</p>
+              <a href="{{obj.house_number}}" class="btn btn-primary">Information</a>
+            </div>
+          </div>
+        </div>
+  {% endfor %}
+  </div>
 {% endblock content %}
