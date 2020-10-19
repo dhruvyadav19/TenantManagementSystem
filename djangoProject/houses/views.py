@@ -17,9 +17,9 @@ def add_house_view(request):
     if request.method == 'POST':
         form = HouseCreationForm(request.POST)
         if form.is_valid():
-            newForm = form.save(commit=False)
-            newForm.user = User.objects.get(username = request.user)
-            newForm.save()
+            form = form.save(commit=False)
+            form.user = User.objects.get(username = request.user)
+            form.save()
             messages.success(request, f'Your house has been successfully added')
             return redirect('home-view')
     else:
