@@ -9,10 +9,10 @@ class House(models.Model):
     pincode = models.IntegerField()
     rent = models.IntegerField()
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-
+'''
     def __str__(self):
         return self.house_number
-
+'''
 class Image(models.Model):
     house = models.ForeignKey(House,on_delete=models.CASCADE,related_name='house_pics')
     image = models.FileField(upload_to = "house_pics")
