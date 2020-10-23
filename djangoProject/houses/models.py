@@ -12,3 +12,10 @@ class House(models.Model):
 
     def __str__(self):
         return self.house_number
+
+class Image(models.Model):
+    house = models.ForeignKey(House,on_delete=models.CASCADE,related_name='house_pics')
+    image = models.FileField(upload_to = "house_pics")
+
+    def __str__(self):
+        return self.house.house_number

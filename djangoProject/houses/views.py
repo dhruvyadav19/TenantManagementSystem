@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import House
+from .models import House,Image
 from django.contrib.auth.models import User
 from .forms import HouseCreationForm
 # Create your views here.
@@ -17,11 +17,15 @@ def house_view(request):
 @login_required
 def add_house_view(request):
     if request.method == 'POST':
-        form = HouseCreationForm(request.POST)
+        form = HouseCreationForm(request.POST,request.FILES)
         if form.is_valid():
             newForm = form.save(commit=False)
             newForm.user = User.objects.get(username = request.user)
             newForm.save()
+            for file in request.FILES.getlist('house_pics'):
+                instance = Image(house = House.objects.get(pk = newForm.pk),image=file)
+                instance.save()
+
             messages.success(request, f'Your house has been successfully added')
             return redirect('home-view')
     else:

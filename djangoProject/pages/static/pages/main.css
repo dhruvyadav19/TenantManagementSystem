@@ -45,7 +45,7 @@ a{
     color: white;
 }
 .content-section{
-      background: #ffffff;
+  background: #ffffff;
   padding: 10px 20px;
   border: 2px solid #dddddd;
   border-radius: 3px;
@@ -72,12 +72,6 @@ a{
 
 /* Base styling */
 
-* {
-	border: 0;
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
 :root {
 	font-size: calc(16px + (24 - 16)*(100vw - 320px)/(1920 - 320));
 }
@@ -183,7 +177,6 @@ input {
 	height: 1px;
 }
 
-/* Active state */
 .search-bar input:focus + .search-btn,
 .search-bar input:valid + .search-btn {
 	background: #2762f3;
@@ -206,7 +199,7 @@ input {
 	transform: translateY(1px);
 }
 
-@media screen and (prefers-color-scheme: dark) {
+/*@media screen and (prefers-color-scheme: dark) {
 	body, input {
 		color: #f1f1f1;
 	}
@@ -224,4 +217,4 @@ input {
 	.search-btn {
 		background: #f1f1f1;
 	}
-}
+}*/
