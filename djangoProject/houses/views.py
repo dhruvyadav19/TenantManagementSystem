@@ -39,6 +39,8 @@ def house_info(request, single_slug):
     houses = [h.id for h in House.objects.all()]
     if int(single_slug) in houses:
         this_house = House.objects.get(id=int(single_slug))
-        return render(request, "houses/house_page.html", {'house':this_house})
+        image_src = Image.objects.filter(house__id = single_slug)
+        length = len(image_src)
+        return render(request, "houses/house_page.html", {'house':this_house, 'image_src':image_src, 'length':length})
     else:
         return HttpResponse(f"404 error")
