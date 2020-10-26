@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -35,9 +36,11 @@ def add_house_view(request):
 
 @login_required
 def house_info(request, single_slug):
-    houses = [h.house_number for h in House.objects.all()]
-    if single_slug in houses:
-        this_house = House.objects.get(house_number=single_slug)
-        return render(request, "houses/house_page.html", {'house':this_house})
+    houses = [h.id for h in House.objects.all()]
+    if int(single_slug) in houses:
+        this_house = House.objects.get(id=int(single_slug))
+        image_src = Image.objects.filter(house__id = single_slug)
+        length = len(image_src)
+        return render(request, "houses/house_page.html", {'house':this_house, 'image_src':image_src, 'length':length})
     else:
         return HttpResponse(f"404 error")
