@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import House, Image, Amenities
 from django.contrib.auth.models import User
 from .forms import HouseCreationForm, AmenitiesCreationForm
+from django.forms.models import model_to_dict
 # Create your views here.
 
 @login_required
@@ -45,9 +46,27 @@ def house_info(request, single_slug):
     if int(single_slug) in houses:
         this_house = House.objects.get(id=int(single_slug))
         image_src = Image.objects.filter(house__id = single_slug)
-        h_form = HouseCreationForm(instance=request.user)
+        amenities = Amenities.objects.get(house=this_house)
+        
+        temp = model_to_dict(amenities)
+        lst = []
+        for amenity in temp:
+            if temp[amenity] == True and amenity != 'id':
+                if amenity == 'lift': lst.append('Lift')
+                if amenity == 'air_conditioner': lst.append('Air Conditioner')
+                if amenity == 'swimming_pool': lst.append('Swimming Pool') 
+                if amenity == 'gas_pipeline': lst.append('Gas Pipeline')
+                if amenity == 'visitor_parking': lst.append('Visitor Parking')
+                if amenity == 'gym': lst.append('Gym')
+                if amenity == 'security':lst.append('Security')
+                if amenity == 'park':lst.append('Parking')
+                if amenity == 'house_keeping':lst.append('House Keeping')
+                if amenity == 'internet_services':lst.append('Internet Services')
+                if amenity == 'shopping_center':lst.append('Shopping Center')
+                if amenity == 'power_backup':lst.append('Power Backup')
+
         return render(request, "houses/house_page.html", {'house':this_house, 
                                                           'image_src':image_src, 
-                                                          'h_form':h_form})
+                                                          'amenities':lst})
     else:
         return HttpResponse(f"404 error")

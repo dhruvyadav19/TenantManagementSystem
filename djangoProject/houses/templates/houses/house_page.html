@@ -4,6 +4,7 @@
 
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap');
   * {box-sizing:border-box}
   
   /* Slideshow container */
@@ -36,7 +37,7 @@
   
   /* Position the "next button" to the right */
   .next {
-    right: 0;
+    right: 50%;
     border-radius: 3px 0 0 3px;
   }
   
@@ -89,6 +90,19 @@
     animation-duration: 1.5s;
     animation-fill-mode: forwards;
   }
+
+  .impact{
+    border-style: solid;
+    border-width: 2px;
+    margin-right: 50px;
+    margin-top: 50px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .table{
+    display: grid;
+    
+  }
   
   @-webkit-keyframes fade {
     from {opacity: .4}
@@ -134,6 +148,7 @@
   </script>
 
 
+  <p class=''>{{house.house_number}} / {{house.city}} / {{house.state}}</p>
   <!-- Slideshow container -->
   <div class="slideshow-container">
     <!-- Full-width images with number and caption text -->
@@ -156,19 +171,15 @@
     <span class="dot" onclick="currentSlide(3)"></span>
   </div>
 -->
-
-<div class="content-section">
-  <!-- FORM HERE -->
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">House Page</legend>
-                    {{ h_form|crispy }}
-                </fieldset>
-                <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">Rent</button>
-                </div>
-            </form>
-  </div>
-</div>
+<p>Close To: {{house.landmark}}</p>
+<p class="impact">{{house.property_type}}</p>
+<p class="impact">{{house.balcony}}</p>
+<p class="impact">Bedrooms {{house.beds}}</p>
+<p class="impact">Pincode {{house.pincode}}</p>
+<p class="impact">Rent {{house.rent}}</p>
+<p class="impact">Owner {{house.user}}</p>
+<h1>Amenities</h1>
+{% for i in amenities %}
+  <p>{{i}}</p>
+{% endfor %}
 {% endblock content %}
