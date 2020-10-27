@@ -157,10 +157,18 @@
   </div>
 -->
 
-<h1>{{house.city}}</h1>
-<p>{{house.state}}</p>
-<p>{{house.state}}</p>
-<p>{{house.bed}}</p>
-<p>{{house.pincode}}</p>
-<p>{{house.user}}</p>
+<div class="content-section">
+  <!-- FORM HERE -->
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">House Page</legend>
+                    {{ h_form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Rent</button>
+                </div>
+            </form>
+  </div>
+</div>
 {% endblock content %}
