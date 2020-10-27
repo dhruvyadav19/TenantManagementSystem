@@ -2,9 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import House,Image
+from .models import House, Image, Amenities
 from django.contrib.auth.models import User
-from .forms import HouseCreationForm
+from .forms import HouseCreationForm, AmenitiesCreationForm
 # Create your views here.
 
 @login_required
@@ -18,21 +18,26 @@ def house_view(request):
 @login_required
 def add_house_view(request):
     if request.method == 'POST':
-        form = HouseCreationForm(request.POST,request.FILES)
-        if form.is_valid():
-            newForm = form.save(commit=False)
-            newForm.user = User.objects.get(username = request.user)
-            newForm.save()
+        house_form = HouseCreationForm(request.POST,request.FILES)
+        amenities_form = AmenitiesCreationForm(request.POST)
+        if house_form.is_valid() and amenities_form.is_valid():
+            house_form = house_form.save(commit=False)
+            house_form.user = User.objects.get(username = request.user)
+            house_form.save()
+            amenities_form = amenities_form.save(commit=False)
+            amenities_form.house_id = house_form.pk
+            amenities_form.save()
             for file in request.FILES.getlist('house_pics'):
-                instance = Image(house = House.objects.get(pk = newForm.pk),image=file)
+                instance = Image(house = House.objects.get(pk = house_form.pk),image=file)
                 instance.save()
 
             messages.success(request, f'Your house has been successfully added')
-            return redirect('home-view')
+            return redirect('profile-view')
     else:
-        form = HouseCreationForm()
+        house_form = HouseCreationForm()
+        amenities_form = AmenitiesCreationForm()
 
-    return render(request,'houses/add_house.html',{'form':form})
+    return render(request,'houses/add_house.html',{'house_form':house_form, 'amenities_form' : amenities_form })
 
 @login_required
 def house_info(request, single_slug):

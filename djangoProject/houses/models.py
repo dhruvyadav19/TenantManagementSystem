@@ -5,7 +5,7 @@ class House(models.Model):
     house_number = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
     state = models.CharField(max_length=200)
-    landmark = models.CharField(max_length=200, default='None')
+    landmark = models.CharField(max_length=200)
     apartment_choices = [
         ('AP', "Apartment"),
         ('SG', "Single Family House"),
@@ -17,7 +17,7 @@ class House(models.Model):
                                     choices = apartment_choices,
                                     default='AP')
     #age = models.IntegerField()
-    balcony = models.IntegerField(default=0)
+    balcony = models.IntegerField()
     beds = models.IntegerField()
     pincode = models.IntegerField()
     rent = models.IntegerField()
@@ -37,21 +37,14 @@ class Amenities(models.Model):
     lift = models.BooleanField(default = False)
     air_conditioner = models.BooleanField(default = False)
     swimming_pool = models.BooleanField(default = False)
-    servant_room = models.BooleanField(default = False)
     gas_pipeline = models.BooleanField(default = False)
-    sewage_treatment_plant = models.BooleanField(default = False)
     visitor_parking = models.BooleanField(default = False)    
     gym = models.BooleanField(default = False)
-    club_house = models.BooleanField(default = False)
-    children_play_area = models.BooleanField(default = False)
     security = models.BooleanField(default = False)
     park = models.BooleanField(default = False)
     house_keeping = models.BooleanField(default = False)
     internet_services = models.BooleanField(default = False)
-    intercom = models.BooleanField(default = False)
-    fire_safety = models.BooleanField(default = False)
     shopping_center = models.BooleanField(default = False)
-    rain_water_harvesting = models.BooleanField(default = False)
     power_backup = models.BooleanField(default = False)
 
     def __str__(self):
