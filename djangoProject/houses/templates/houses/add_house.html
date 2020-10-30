@@ -3,20 +3,101 @@
 {% block content %}
 
 
-<h1>Hello </h1>
 <div class="container">
     <div class="content-section">
     <form method="POST" autocomplete="off" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Add House</legend>
-            {{ form|crispy }}
-            <br>
+            <div class="form-row">
+                <div class="form-group col-md-3 mb-2"></div>
+                <div class="form-group col-md-6 mb-2">
+                    {{house_form.property_type|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-2"></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 mb-2">
+                    {{house_form.house_number|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-6 mb-2">
+                    {{house_form.landmark|as_crispy_field}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4 mb-2">
+                    {{house_form.state|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-4 mb-2">
+                    {{house_form.city|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-4 mb-2">
+                    {{house_form.pincode|as_crispy_field}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4 mb-4">
+                    {{house_form.balcony|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-4 mb-4">
+                    {{house_form.beds|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-4 mb-4">
+                    {{house_form.rent|as_crispy_field}}
+                </div>
+            </div>
+            <legend class="border-bottom mb-4">Amenities</legend>
+            <div class="form-row">
+                <div class="form-group col-md-3 mb-2">
+                    {{amenities_form.lift|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-2">
+                    {{amenities_form.air_conditioner|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-2">
+                    {{amenities_form.swimming_pool|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-2">
+                    {{amenities_form.gas_pipeline|as_crispy_field}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3 mb-2">
+                    {{amenities_form.visitor_parking|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-2">
+                    {{amenities_form.gym|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-2">
+                    {{amenities_form.security|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-2">
+                    {{amenities_form.park|as_crispy_field}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3 mb-4">
+                    {{amenities_form.house_keeping|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-4">
+                    {{amenities_form.internet_services|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-4">
+                    {{amenities_form.shopping_center|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-4">
+                    {{amenities_form.power_backup|as_crispy_field}}
+                </div>
+            </div>
+
+            <legend class="border-bottom mb-4">House Images</legend>
             <input type="file" name="house_pics" multiple>
-        </fieldset>
-        <div class="form-group">
+
+            <br><br><br>
+            <div class="form-group">
             <button class="btn btn-outline-info" type="submit">Add House</button>
         </div>
+        </fieldset>
     </form>
     </div>
 </div>

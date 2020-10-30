@@ -1,9 +1,16 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import House
+from .models import House, Amenities
 
 class HouseCreationForm(forms.ModelForm):
     class Meta:
         model = House
-        fields = ['house_number','city','state','beds','pincode','rent']
+        fields = ['property_type','house_number','landmark','city','state','beds','pincode','rent','balcony']
+
+class AmenitiesCreationForm(forms.ModelForm):
+    class Meta:
+        model = Amenities
+        exclude = ['house']
+
+
 
