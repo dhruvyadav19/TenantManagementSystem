@@ -17,6 +17,7 @@ urlpatterns = [
     path('view-house/',house_view,name = 'house-view'),
     path('add-house/',add_house_view, name = 'add-house-view'),
     path('view-house/<single_slug>', house_info, name = 'house-info'),
+    path('search/<single_slug>', house_info, name = 'house-info'),
 ]
 
 if settings.DEBUG:
