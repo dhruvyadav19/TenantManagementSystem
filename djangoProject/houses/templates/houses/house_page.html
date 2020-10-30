@@ -37,11 +37,7 @@
 
   /* Position the "next button" to the right */
   .next {
-<<<<<<< HEAD
-    right: 50%;
-=======
     right: 0%;
->>>>>>> 15effbf3ddc88a4fed4dea289f69954f5d2f43a4
     border-radius: 3px 0 0 3px;
   }
 
@@ -105,15 +101,9 @@
   }
   .table{
     display: grid;
-<<<<<<< HEAD
-    
-  }
-  
-=======
 
   }
 
->>>>>>> 15effbf3ddc88a4fed4dea289f69954f5d2f43a4
   @-webkit-keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
@@ -273,43 +263,4 @@
   }
   </script>
 
-<<<<<<< HEAD
-
-  <p class=''>{{house.house_number}} / {{house.city}} / {{house.state}}</p>
-  <!-- Slideshow container -->
-  <div class="slideshow-container">
-    <!-- Full-width images with number and caption text -->
-    {% for img in image_src %}
-      <div class="mySlides fade">
-        <img src={{img.image.url}} height = "100" width:50%>
-      </div>
-    {% endfor %}
-  
-    <!-- Next and previous buttons -->
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-  </div>
-  <br>
-  
-  <!-- The dots/circles
-  <div style="text-align:center">
-    <span class="dot" onclick="currentSlide(1)"></span>
-    <span class="dot" onclick="currentSlide(2)"></span>
-    <span class="dot" onclick="currentSlide(3)"></span>
-  </div>
--->
-<p>Close To: {{house.landmark}}</p>
-<p class="impact">{{house.property_type}}</p>
-<p class="impact">{{house.balcony}}</p>
-<p class="impact">Bedrooms {{house.beds}}</p>
-<p class="impact">Pincode {{house.pincode}}</p>
-<p class="impact">Rent {{house.rent}}</p>
-<p class="impact">Owner {{house.user}}</p>
-<h1>Amenities</h1>
-{% for i in amenities %}
-  <p>{{i}}</p>
-{% endfor %}
 {% endblock content %}
-=======
-{% endblock content %}
->>>>>>> 15effbf3ddc88a4fed4dea289f69954f5d2f43a4
