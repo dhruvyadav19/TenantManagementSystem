@@ -9,7 +9,6 @@ from django.forms.models import model_to_dict
 
 
 # Create your views here.
-
 @login_required
 def house_view(request):
     data = House.objects.filter(user=request.user)
@@ -17,7 +16,6 @@ def house_view(request):
         'house': data
     }
     return render(request, 'houses/view_houses.html', context)
-
 
 @login_required
 def add_house_view(request):
@@ -43,8 +41,27 @@ def add_house_view(request):
 
     return render(request, 'houses/add_house.html', {'house_form': house_form, 'amenities_form': amenities_form})
 
-
 @login_required
+def update_house(request, single_slug):
+    this_house = House.objects.get(id=int(single_slug))
+    amenity = Amenities.objects.get(house=this_house)
+    if request.method == "POST":
+        u_form = HouseCreationForm(request.POST, instance = this_house)
+        p_form = AmenitiesCreationForm(request.POST ,instance = amenity)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Your House Information has been updated!')
+            return redirect('update-house', single_slug = this_house.id)
+    else:
+        u_form = HouseCreationForm(instance=this_house)
+        p_form = AmenitiesCreationForm(instance=amenity)
+    context = {
+        'u_form' : u_form,
+        'p_form' : p_form
+    }
+    return render(request,'houses/update_house.html',context)
+
 def house_info(request, single_slug):
     houses = [h.id for h in House.objects.all()]
     if int(single_slug) in houses:

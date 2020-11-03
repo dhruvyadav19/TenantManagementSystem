@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from django.urls import path,include
 from users.views import register_view, profile_view
 from django.contrib.auth import views as auth_views
-from houses.views import house_view,add_house_view,house_info
+from houses.views import house_view,add_house_view,house_info,update_house
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -17,7 +17,9 @@ urlpatterns = [
     path('view-house/',house_view,name = 'house-view'),
     path('add-house/',add_house_view, name = 'add-house-view'),
     path('view-house/<single_slug>', house_info, name = 'house-info'),
-    path('search/<single_slug>', house_info, name = 'house-info'),
+    path('search/<single_slug>', house_info),
+    path('view-house/<single_slug>/update_house/', update_house, name='update-house'),
+    path('search/<single_slug>/update_house/', update_house),
 ]
 
 if settings.DEBUG:

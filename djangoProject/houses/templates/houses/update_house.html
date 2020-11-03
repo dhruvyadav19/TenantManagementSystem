@@ -1,0 +1,102 @@
+{% extends "pages/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="container">
+    <div class="content-section">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Update House</legend>
+            <div class="form-row">
+                <div class="form-group col-md-3 mb-2"></div>
+                <div class="form-group col-md-6 mb-2">
+                    {{u_form.property_type|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-2"></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 mb-2">
+                    {{u_form.house_number|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-6 mb-2">
+                    {{u_form.landmark|as_crispy_field}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4 mb-2">
+                    {{u_form.state|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-4 mb-2">
+                    {{u_form.city|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-4 mb-2">
+                    {{u_form.pincode|as_crispy_field}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4 mb-4">
+                    {{u_form.balcony|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-4 mb-4">
+                    {{u_form.beds|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-4 mb-4">
+                    {{u_form.rent|as_crispy_field}}
+                </div>
+            </div>
+            <legend class="border-bottom mb-4">Amenities</legend>
+            <div class="form-row">
+                <div class="form-group col-md-3 mb-2">
+                    {{p_form.lift|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-2">
+                    {{p_form.air_conditioner|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-2">
+                    {{p_form.swimming_pool|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-2">
+                    {{p_form.gas_pipeline|as_crispy_field}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3 mb-2">
+                    {{p_form.visitor_parking|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-2">
+                    {{p_form.gym|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-2">
+                    {{p_form.security|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-2">
+                    {{p_form.park|as_crispy_field}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3 mb-4">
+                    {{p_form.house_keeping|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-4">
+                    {{p_form.internet_services|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-4">
+                    {{p_form.shopping_center|as_crispy_field}}
+                </div>
+                <div class="form-group col-md-3 mb-4">
+                    {{p_form.power_backup|as_crispy_field}}
+                </div>
+            </div>
+
+            <br><br><br>
+            <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Update House</button>
+        </div>
+        </fieldset>
+    </form>
+    </div>
+</div>
+
+{% endblock content %}

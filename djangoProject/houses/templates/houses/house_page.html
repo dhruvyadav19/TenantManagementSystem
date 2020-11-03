@@ -135,10 +135,11 @@
     list-style-type: none;
     text-align:left;
   }
+
+  .hide-file{
+    display: none;
+  }
   </style>
-
-
-
 
 
   <!-- Slideshow container -->
@@ -173,8 +174,12 @@
           <p class="card-text">Apartment Type : <strong>{{house.property_type}}</strong></p>
           <p class="card-text">No of Beds : <strong>{{house.beds}}</strong></p>
           <p class="card-text">Furnished : <strong>Yes</strong></p>
-          <a href="#" class="btn btn-primary">Rent House!</a>
-          <a href="#" class="btn btn-primary">Contact Landowner</a>
+          {% if user.id == house.user_id %}
+          <a href="{{house.id}}/update_house" class="btn btn-primary ">Update House!</a>
+          {% else %}
+          <a href="#" class="btn btn-primary ">Rent House!</a>
+          <a href="#" class="btn btn-primary ">Contact Landowner</a>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -229,7 +234,6 @@
         <p>In case of theft/loss and damage of any furnishing or appliance or furniture, all the tenants shall be held responsible & owner or its representative shall have the right to deduct money from security deposit of tenants towards compensation of the loss.</p>
       </div>
     </div>
-
   </div>
 
   <script>
