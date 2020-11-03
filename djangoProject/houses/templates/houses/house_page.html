@@ -142,9 +142,6 @@
   </style>
 
 
-
-
-
   <!-- Slideshow container -->
   <div class="slideshow-container">
     <!-- Full-width images with number and caption text -->
@@ -178,7 +175,7 @@
           <p class="card-text">No of Beds : <strong>{{house.beds}}</strong></p>
           <p class="card-text">Furnished : <strong>Yes</strong></p>
           {% if user.id == house.user_id %}
-          <a href="#" class="btn btn-primary ">Update House!</a>
+          <a href="{{house.id}}/update_house" class="btn btn-primary ">Update House!</a>
           {% else %}
           <a href="#" class="btn btn-primary ">Rent House!</a>
           <a href="#" class="btn btn-primary ">Contact Landowner</a>
