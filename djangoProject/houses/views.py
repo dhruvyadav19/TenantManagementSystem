@@ -91,3 +91,9 @@ def house_info(request, single_slug):
                                                           'amenities': lst})
     else:
         return HttpResponse(f"404 error")
+
+def rent_house(request):
+    house_instance = House.objects.get(id = 19)
+    house_instance.beds = 15
+    house_instance.save()
+    return HttpResponse(f'values changed')

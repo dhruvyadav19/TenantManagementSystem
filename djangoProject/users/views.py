@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from django.contrib.auth.models import User
 # Create your views here.
 def register_view(request):
     if request.method == "POST":
@@ -36,3 +37,15 @@ def profile_view(request):
         'p_form' : p_form
     }
     return render(request,'users/profile.html',context)
+
+@login_required
+def delete_user(request):
+    user_instance = User.objects.get(username = request.user)
+    if user_instance.username == 'dhruv':
+        messages.warning(request,f'Cannot delete this Account')
+        return redirect('profile-view')
+    else:
+        user_instance.delete()
+        messages.success(request,f'Your Account has been deleted')
+        return redirect('home-view')
+
