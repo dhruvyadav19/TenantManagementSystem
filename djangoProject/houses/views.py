@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 from .forms import HouseCreationForm, AmenitiesCreationForm
 from django.forms.models import model_to_dict
 
-
 # Create your views here.
 @login_required
 def house_view(request):
@@ -92,8 +91,17 @@ def house_info(request, single_slug):
     else:
         return HttpResponse(f"404 error")
 
+<<<<<<< HEAD
 def rent_house(request):
     house_instance = House.objects.get(id = 19)
     house_instance.beds = 15
     house_instance.save()
     return HttpResponse(f'values changed')
+=======
+def rent_house(request, single_slug):
+    house = House.objects.get(id=int(single_slug))
+    house.tenant_id = request.user.id
+    house.occupied = True
+    house.save()
+    return HttpResponse(f"House Rented")
+>>>>>>> a02262ef05ae0cce8678918c8e92d4efb4e65e5d
