@@ -22,6 +22,8 @@ class House(models.Model):
     pincode = models.IntegerField()
     rent = models.IntegerField()
     user = models.ForeignKey(User,on_delete=models.CASCADE)
+    tenant_id = models.IntegerField(null=True, blank=True)
+    occupied = models.BooleanField(default=False)
     def __str__(self):
         return self.house_number
 
