@@ -176,6 +176,7 @@
           <p class="card-text">Furnished : <strong>Yes</strong></p>
           {% if user.id == house.user_id %}
           <a href="update_house/" class="btn btn-primary ">Update House!</a>
+          <a href="delete_house/" class="btn btn-danger" role="button" >Delete House!</a>
           {% else %}
           <a href="rent_house/" class="btn btn-primary ">Rent House!</a>
           <a href="#" class="btn btn-primary ">Contact Landowner</a>

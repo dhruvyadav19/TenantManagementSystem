@@ -4,10 +4,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.models import User
-<<<<<<< HEAD
-=======
-
->>>>>>> a02262ef05ae0cce8678918c8e92d4efb4e65e5d
 # Create your views here.
 def register_view(request):
     if request.method == "POST":
@@ -52,7 +48,3 @@ def delete_user(request):
         user_instance.delete()
         messages.success(request,f'Your Account has been deleted')
         return redirect('home-view')
-<<<<<<< HEAD
-
-=======
->>>>>>> a02262ef05ae0cce8678918c8e92d4efb4e65e5d

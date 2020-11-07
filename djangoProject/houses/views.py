@@ -2,10 +2,11 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import House, Image, Amenities
+from .models import House, Image, Amenities, Contract
 from django.contrib.auth.models import User
-from .forms import HouseCreationForm, AmenitiesCreationForm
+from .forms import HouseCreationForm, AmenitiesCreationForm, ContractForm
 from django.forms.models import model_to_dict
+from datetime import date
 
 # Create your views here.
 @login_required
@@ -91,17 +92,46 @@ def house_info(request, single_slug):
     else:
         return HttpResponse(f"404 error")
 
-<<<<<<< HEAD
-def rent_house(request):
-    house_instance = House.objects.get(id = 19)
-    house_instance.beds = 15
-    house_instance.save()
-    return HttpResponse(f'values changed')
-=======
+@login_required
+def delete_house(request, single_slug):
+    house_instance = House.objects.get(id = int(single_slug))
+    house_instance.delete()
+    messages.success(request, f'Your Property has been deleted')
+    return redirect('house-view')
+
+
 def rent_house(request, single_slug):
-    house = House.objects.get(id=int(single_slug))
-    house.tenant_id = request.user.id
-    house.occupied = True
-    house.save()
-    return HttpResponse(f"House Rented")
->>>>>>> a02262ef05ae0cce8678918c8e92d4efb4e65e5d
+    if request.method == 'POST':
+        form = ContractForm(request.POST)
+        if form.is_valid():
+            if form.cleaned_data['E_Signature'] == request.user.username:
+                form = form.save(commit = False)
+                form.user = User.objects.get(username=request.user)
+                form.save()
+                house = House.objects.get(id=int(single_slug))
+                house.tenant_id = request.user.id
+                house.occupied = True
+                house.save()
+                messages.success(request,f'Congratulations! The Contract Agreement was Successful')
+                return redirect('profile-view')
+            else:
+                messages.warning(request,f'Incorrect Information, Please Try Again')
+                return redirect('rent-house',single_slug = single_slug)
+    else:
+        form = ContractForm()
+
+    today = date.today()
+    house = House.objects.get(id = int(single_slug))
+    landowner_name = User.objects.get(id = house.user_id).username
+    tenant_name = request.user.username
+
+    context = {
+        'form' : form,
+        'date' : today,
+        'landowner_name' : landowner_name,
+        'tenant_name' : tenant_name,
+        'house' : house,
+        'security' : house.rent//10
+    }
+
+    return render(request,'houses/sign_contract.html',context)
