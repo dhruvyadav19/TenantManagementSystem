@@ -51,3 +51,10 @@ class Amenities(models.Model):
 
     def __str__(self):
         return self.house.house_number
+
+class Contract(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    E_Signature = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.user.username

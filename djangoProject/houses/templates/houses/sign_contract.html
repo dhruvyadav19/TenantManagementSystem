@@ -1,0 +1,50 @@
+{% extends 'pages/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+    <div class="content-section">
+        <legend class="border-bottom mb-4">Rental Agreement</legend>
+        <p>This rental agreement, dated <strong>{{date}}</strong>, is between <strong>{{tenant_name}}</strong> tenant and <strong>{{landowner_name}}</strong> landlord for the rental unit located at <strong>{{house.house_number}}, near {{house.landmark}} in {{house.city}}, {{house.state}}</strong>
+        </p>
+        <br>
+        <p>
+            Under this rental agreement, the tenant agrees to the rent and above-mentioned residence on a month-to-month basis with
+            a monthlt rental of <strong>Rs. {{house.rent}}</strong>. The monthly rent will be due and payable on the <strong>1st</strong> day of each month.
+        </p>
+        <br>
+        <p>
+            A damage deposit of <strong>Rs. {{security}}</strong> will be submitted to <strong>{{landowner_name}}</strong> withing 15 days. If the rental unit is returned to the landowner in a clean and good
+            condition, this deposit will be refunded to the tenant within 10 days from the date the tenant returns the keys to the landowner.
+        </p>
+        <br>
+        <p>
+            The tenant or the landowner may terminate this agreement with a 30 day written notice to the other party.
+        </p>
+        <br>
+        <p>
+            The tenant acknowledges reading and understanding this agreement and the rental policy that is part of this
+            agreement. The tenant's name will be taken as an e-signature which indicates acceptance of all terms and conditions of this rental
+            agreement and the rental policy.
+        </p>
+        <br><br>
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        {{form.E_Signature|as_crispy_field}}
+                    </div>
+                </div>
+
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Sign Contract</button>
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+{% endblock content %}
