@@ -3,6 +3,8 @@
 <html>
     <head>
     <link rel="stylesheet" href="{% static 'pages/main.css' %}">
+    <link href="/static/css/all.css" rel="stylesheet"> <!--load all styles -->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
@@ -15,8 +17,6 @@
         <a class="main-name" href="{% url 'home-view' %}">Apartments.com</a>
         {% if user.is_authenticated %}
         <a class="auth-login" href="{% url 'profile-view' %}">{{user.username}}</a>
-        <a class="auth-login" href="{% url 'add-house-view' %}">Add House</a>
-        <a class="auth-login" href="{% url 'house-view' %}"  >View House</a>
         <a class="auth-logout" href="{% url 'logout-view' %}">Logout</a>
         <a class="about-us" href="{% url 'about-view' %}">About Us</a>
         {% else %}

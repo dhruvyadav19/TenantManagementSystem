@@ -139,6 +139,10 @@
   .hide-file{
     display: none;
   }
+  .display-details{
+    display: grid;
+    grid-template-columns: 30px auto;
+  }
   </style>
 
 
@@ -187,14 +191,32 @@
     <br>
     <div class="row">
       <div class="col-md-8">
-        <legend class="border-bottom mb-4">Property Details</legend>
+        <div class="parent display-details">
+          <div class='child'><i class="fa fa-folder-open" aria-hidden="true"></i></div>
+          <div class='child'><legend class="single-prop-details">Property Details</legend></div>
+        </div>
         <ul class="prop-details">
-          <li><legend class="single-prop-details">Apartment Type: {{house.property_type}}</li></legend>
+          <li>
+            <div class="parent display-details">
+              <div class='child'><i class="fa fa-building" aria-hidden="true"></i></div>
+              <div class='child'><legend class="single-prop-details">Apartment Type: {{house.property_type}}</legend></div>
+            </div>
+          </li>
           <br>
-          <li><legend class="single-prop-details">No of Beds: {{house.beds}}</li></legend>
+          <li>
+            <div class="parent display-details">
+              <div class='child'><i class="fa fa-bed" aria-hidden="true"></i></div>
+              <div class='child'><legend class="single-prop-details">No of Beds: {{house.beds}}</legend></div>
+            </div>
+          </li>
           <br>
-          <li><legend class="single-prop-details">No of Balconies: {{house.balcony}}</li></legend>
-        </ul>
+          <li>
+            <div class="parent display-details">
+              <div class='child'><i class="fa fa-binoculars" aria-hidden="true"></i></div>
+              <div class='child'><legend class="single-prop-details">No of Balconies: {{house.balcony}}</legend></div>
+            </div>
+          </li>
+         </ul>
       </div>
     </div>
     <br>
