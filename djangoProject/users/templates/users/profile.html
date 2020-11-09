@@ -1,6 +1,25 @@
 {% extends "pages/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+
+
+
+
+<div class="container">
+    <div class="content-section">
+        <legend class="border-bottom mb-4">Houses</legend>
+        <div class="row">
+            <div class="col md-1"></div>
+            <a href="{% url 'add-house-view' %}" class="btn btn-secondary col-md-2 mb-4 " role="button" >Add House</a>
+            <div class="col md-2"></div>
+            <a href="{% url 'house-view' %}" class="btn btn-secondary col-md-2 mb-4 " role="button" >View My Houses</a>
+            <div class="col md-2"></div>
+            <a href="#" class="btn btn-secondary col-md-2 mb-4 " role="button" >Rented Houses</a>
+            <div class="col md-1"></div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
 
 <div class="content-section">
@@ -49,21 +68,5 @@
             <a href="{% url 'delete-view' %}" class="btn btn-danger" role="button" >Delete Account</a>
   </div>
 </div>
-
-<div class="container">
-    <div class="content-section">
-        <legend class="border-bottom mb-4">Houses</legend>
-        <div class="row">
-            <div class="col md-1"></div>
-            <a href="{% url 'add-house-view' %}" class="btn btn-secondary col-md-2 mb-4 " role="button" >Add House</a>
-            <div class="col md-2"></div>
-            <a href="{% url 'house-view' %}" class="btn btn-secondary col-md-2 mb-4 " role="button" >View My Houses</a>
-            <div class="col md-2"></div>
-            <a href="#" class="btn btn-secondary col-md-2 mb-4 " role="button" >Rented Houses</a>
-            <div class="col md-1"></div>
-        </div>
-    </div>
-</div>
-
 
 {% endblock content %}
