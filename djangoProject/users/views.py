@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.models import User
-from .models import Tenant
+from houses.models import House
 # Create your views here.
 def register_view(request):
     if request.method == "POST":
@@ -42,15 +42,17 @@ def profile_view(request):
 @login_required
 def delete_user(request):
     user_instance = User.objects.get(username = request.user)
+
     if user_instance.username == 'dhruv':
         messages.warning(request,f'Cannot delete this Account')
         return redirect('profile-view')
     else:
-        user_instance.delete()
-        messages.success(request,f'Your Account has been deleted')
-        return redirect('home-view')
+        rented_house = House.objects.filter(tenant_id = user_instance.id)
+        if len(rented_house) > 0:
+            messages.warning(request,f'Please Vacate all Houses before deleting the Account')
+            return redirect('profile-view')
+        else:
+            user_instance.delete()
+            messages.success(request,f'Your Account has been deleted')
+            return redirect('home-view')
 
-@login_required
-def tenant_view(request):
-    tenant_list = Tenant.objects.filter(user = request.user)
-    return render(request, 'users/tenant.html', {'tenant_list': tenant_list})

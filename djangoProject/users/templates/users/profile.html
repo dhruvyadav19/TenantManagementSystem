@@ -14,8 +14,18 @@
             <div class="col md-2"></div>
             <a href="{% url 'house-view' %}" class="btn btn-secondary col-md-2 mb-4 " role="button" >View My Houses</a>
             <div class="col md-2"></div>
-            <a href="#" class="btn btn-secondary col-md-2 mb-4 " role="button" >Rented Houses</a>
+            <a href="{% url 'rented-house-view' %}" class="btn btn-secondary col-md-2 mb-4 " role="button" >Rented Houses</a>
             <div class="col md-1"></div>
+        </div>
+        <div class="row">
+            <div class="col md-1"></div>
+            <a href="{% url 'tenant-report-view' %}" class="btn btn-secondary col-md-2 mb-4 " role="button" >Tenant Report</a>
+            <div class="col md-2"></div>
+            <a href="{% url 'house-view' %}" class="btn btn-white col-md-2 mb-4 disabled" role="button" ></a>
+            <div class="col md-2"></div>
+            <a href="{% url 'rented-house-view' %}" class="btn btn-white col-md-2 mb-4 disabled" role="button" ></a>
+            <div class="col md-1"></div>
+
         </div>
     </div>
 </div>

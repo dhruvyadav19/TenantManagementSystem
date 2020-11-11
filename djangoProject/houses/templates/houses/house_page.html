@@ -179,8 +179,15 @@
           <p class="card-text">No of Beds : <strong>{{house.beds}}</strong></p>
           <p class="card-text">Furnished : <strong>Yes</strong></p>
           {% if user.id == house.user_id %}
-          <a href="update_house/" class="btn btn-primary ">Update House!</a>
-          <a href="delete_house/" class="btn btn-danger" role="button" >Delete House!</a>
+          <a href="update_house/" class="btn btn-primary mb-3" role="button">Update House!</a>
+          <a href="delete_house/" class="btn btn-danger mb-3" role="button">Delete House!</a>
+          <a href="#" class="btn btn-primary" role="button">View Complaints!</a>
+          {% elif user.id == house.tenant_id %}
+          <a href="pay-rent/" class="btn btn-primary mb-3" role="button">Pay Rent!</a>
+          <a href="vacate-house/" class="btn btn-danger mb-3" role="button" >Vacate House!</a>
+          <a href="#" class="btn btn-primary mb-3" role="button" >Register Complaints!</a>
+          {% elif house.occupied == True %}
+          <a href="#" class="btn btn-danger disabled">House Unavailable</a>
           {% else %}
           <a href="rent_house/" class="btn btn-primary ">Rent House!</a>
           <a href="#" class="btn btn-primary ">Contact Landowner</a>

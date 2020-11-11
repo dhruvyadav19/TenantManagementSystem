@@ -1,0 +1,60 @@
+{% extends 'pages/base.html' %}
+{% block content %}
+
+<style>
+
+
+  .content1{
+    display: grid;
+    font-family: 'Nunito Semibold';
+
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1800px;
+    margin: 0 auto;
+  }
+  .content1 div{
+    background-color: white;
+    padding: 25px;
+  }
+  .card-title, .card-text{
+    color: #606060;
+  }
+
+  .my-houses{
+    background-color: black;
+    color: white;
+    text-align: center;
+  }
+  .card-title{
+  font-size: 25px;
+  }
+  .card-text{
+  font-size: 20px;
+  }
+
+</style>
+  <div class="container">
+    <div class="content-section">
+    <legend class="border-bottom mb-4">My Houses :</legend>
+{% if house|length < 1 %}
+    <legend >No Houses Found</legend>
+  {% else %}
+  <div class="content1">
+  {% for obj in house %}
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{obj.house_number}},   {{obj.city}},  {{obj.state}},  {{obj.landmark}}</h5>
+
+              <p class="card-text">Rent : <strong>Rs {{obj.rent}}</strong></p>
+              <br>
+                <a href="{{obj.id}}" class="btn btn-primary">More Info</a>
+            </div>
+          </div>
+        </div>
+  {% endfor %}
+  </div>
+      {% endif %}
+  </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,63 @@
+{% extends 'pages/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+    p{
+    font-size:20px;
+    color: 	#585858l
+    }
+
+</style>
+<div class="container">
+    <div class="content-section">
+        <legend class="border-bottom mb-4">My Tenants</legend>
+        <br>
+        {% for house,tenant,profile,payment in my_houses %}
+        <div class="row">
+                <div class="col-md-9 mb-4">
+                    <h5 >{{house.house_number}} near {{house.landmark}}</h5>
+                    <h6 >
+                      {{house.city}}, {{house.state}}
+                    </h6>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h4>Rent: Rs. {{house.rent}}</h4>
+                </div>
+            </div>
+        <br>
+        <table class="table table-bordered">
+          <thead class="thead-light">
+            <tr class="table-info">
+              <th scope="col">Tenant Name</th>
+                <th scope="col">Username</th>
+              <th scope="col">Email</th>
+              <th scope="col">Contact</th>
+                <th scope="col">Joined</th>
+                <th scope="col">Last Payment Date</th>
+                <th scope="col">Dues</th>
+                <th scope="col">Total Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+
+              <td>{{profile.firstName}} {{profile.lastName}}</td>
+              <td>{{tenant.username}}</td>
+              <td>{{tenant.email}}</td>
+                <td>{{profile.contact}}</td>
+                <td>{{payment.start_date|date:"N d, Y"}}</td>
+                <td>{{payment.last_payment_date|date:"N d, Y"}}</td>
+                <td>Rs. {{payment.due_money}}</td>
+                <td>Rs. {{payment.total_amount_paid}}</td>
+          </tbody>
+        </table>
+        <legend class="border-bottom mb-4"></legend>
+        <br><br>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+{% endblock content %}

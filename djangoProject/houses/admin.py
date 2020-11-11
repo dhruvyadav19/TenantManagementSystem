@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import House,Image,Amenities, Contract
+from .models import House,Image,Amenities
 # Register your models here.
 
 class HouseAdmin(admin.ModelAdmin):
@@ -8,4 +8,3 @@ class HouseAdmin(admin.ModelAdmin):
 admin.site.register(House, HouseAdmin)
 admin.site.register(Image)
 admin.site.register(Amenities)
-admin.site.register(Contract)
