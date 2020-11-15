@@ -2,9 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import House, Image, Amenities, Contract
+from .models import House, Image, Amenities
 from django.contrib.auth.models import User
-from .forms import HouseCreationForm, AmenitiesCreationForm, ContractForm
+from .forms import HouseCreationForm, AmenitiesCreationForm
 from django.forms.models import model_to_dict
 from datetime import date
 
@@ -95,43 +95,11 @@ def house_info(request, single_slug):
 @login_required
 def delete_house(request, single_slug):
     house_instance = House.objects.get(id = int(single_slug))
-    house_instance.delete()
-    messages.success(request, f'Your Property has been deleted')
-    return redirect('house-view')
-
-
-def rent_house(request, single_slug):
-    if request.method == 'POST':
-        form = ContractForm(request.POST)
-        if form.is_valid():
-            if form.cleaned_data['E_Signature'] == request.user.username:
-                form = form.save(commit = False)
-                form.user = User.objects.get(username=request.user)
-                form.save()
-                house = House.objects.get(id=int(single_slug))
-                house.tenant_id = request.user.id
-                house.occupied = True
-                house.save()
-                messages.success(request,f'Congratulations! The Contract Agreement was Successful')
-                return redirect('profile-view')
-            else:
-                messages.warning(request,f'Incorrect Information, Please Try Again')
-                return redirect('rent-house',single_slug = single_slug)
+    if house_instance.tenant_id is None:
+        house_instance.delete()
+        messages.success(request, f'Your Property has been deleted')
+        return redirect('house-view')
     else:
-        form = ContractForm()
+        messages.warning(request,f'The Property must not be currently rented before deleting! Try later')
+        return redirect('house-info',single_slug=single_slug)
 
-    today = date.today()
-    house = House.objects.get(id = int(single_slug))
-    landowner_name = User.objects.get(id = house.user_id).username
-    tenant_name = request.user.username
-
-    context = {
-        'form' : form,
-        'date' : today,
-        'landowner_name' : landowner_name,
-        'tenant_name' : tenant_name,
-        'house' : house,
-        'security' : house.rent//10
-    }
-
-    return render(request,'houses/sign_contract.html',context)

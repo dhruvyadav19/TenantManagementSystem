@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import House, Amenities, Contract
+from .models import House, Amenities
 
 class HouseCreationForm(forms.ModelForm):
     class Meta:
@@ -12,9 +12,9 @@ class AmenitiesCreationForm(forms.ModelForm):
         model = Amenities
         exclude = ['house']
 
-class ContractForm(forms.ModelForm):
+class ContractCreationForm(forms.ModelForm):
     class Meta:
-        model = Contract
+        model = House
         fields = ['E_Signature']
 
 
