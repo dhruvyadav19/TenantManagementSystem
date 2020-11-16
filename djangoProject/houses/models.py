@@ -16,7 +16,6 @@ class House(models.Model):
     property_type = models.CharField(max_length=200,
                                     choices = apartment_choices,
                                     default='AP')
-    #age = models.IntegerField()
     balcony = models.IntegerField()
     beds = models.IntegerField()
     pincode = models.IntegerField()

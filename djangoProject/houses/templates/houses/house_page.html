@@ -185,12 +185,12 @@
           {% elif user.id == house.tenant_id %}
           <a href="pay-rent/" class="btn btn-primary mb-3" role="button">Pay Rent!</a>
           <a href="vacate-house/" class="btn btn-danger mb-3" role="button" >Vacate House!</a>
-          <a href="#" class="btn btn-primary mb-3" role="button" >Register Complaints!</a>
+          <a href="register_complaints/" class="btn btn-primary mb-3" role="button" >Register Complaints!</a>
           {% elif house.occupied == True %}
           <a href="#" class="btn btn-danger disabled">House Unavailable</a>
           {% else %}
           <a href="rent_house/" class="btn btn-primary ">Rent House!</a>
-          <a href="#" class="btn btn-primary ">Contact Landowner</a>
+          <a href="contact_owner/" class="btn btn-primary ">Contact Landowner</a>
           {% endif %}
         </div>
       </div>
@@ -268,7 +268,6 @@
 
   <script>
 
-    
     var slideIndex = 1;
   showSlides(slideIndex);
 

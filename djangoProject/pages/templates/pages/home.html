@@ -1,18 +1,143 @@
 {% extends "pages/base.html" %}
 {% block content %}
 
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<img src="/static/images/img1.jpg" height="500px" width="100%" class="background-img">
-<h1 class="banner">Discover Your New Home</h1>
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+	.top-buffer220{
+		margin-top: 220px;
+	}
+	.top-buffer50{
+		margin-top: 50px;
+	}
+	.align-centre{
+		text-align: center;
+	}
+	.background{
+		background-color: #ECECE0;
+	}
+	.right-margin{
+		margin-right: 100px;
+	}
+	.font{
+		font: montserrat;
+	}
+</style>
+
+<div class="container-fluid">
+	<div class="row">
+		<img src="/static/images/img1.jpg" height="500px" width="100%" class="background-img">
+		<h1 class="banner">Discover Your New Home</h1>
+
+		<form action="/search" class="search-bar" method = "get">
+			<input type="search" id = "query" name="query" pattern=".*\S.*" required>
+			<button class="search-btn" type="submit">
+				<span>Search</span>
+			</button>
+		</form>
+	</div>
+
+	<div class="row top-buffer220 font">
+		<legend class="align-centre">Trending Properties</legend>
+		<br>
+		<div class="col">
+			<div class="card" style="width: 18rem;">
+				<img src="..." class="card-img-top" alt="...">
+				<div class="card-body">
+				  <h5 class="card-title">Card title</h5>
+				  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				  <a href="#" class="btn btn-primary">Go somewhere</a>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="card" style="width: 18rem;">
+				<img src="..." class="card-img-top" alt="...">
+				<div class="card-body">
+				  <h5 class="card-title">Card title</h5>
+				  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				  <a href="#" class="btn btn-primary">Go somewhere</a>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="card" style="width: 18rem;">
+				<img src="..." class="card-img-top" alt="...">
+				<div class="card-body">
+				  <h5 class="card-title">Card title</h5>
+				  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				  <a href="#" class="btn btn-primary">Go somewhere</a>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="card" style="width: 18rem;">
+				<img src="..." class="card-img-top" alt="...">
+				<div class="card-body">
+				  <h5 class="card-title">Card title</h5>
+				  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				  <a href="#" class="btn btn-primary">Go somewhere</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 
-<form action="/search" class="search-bar" method = "get">
-	<input type="search" id = "query" name="query" pattern=".*\S.*" required>
-	<button class="search-btn" type="submit">
-		<span>Search</span>
-	</button>
-</form>
+<div class="container top-buffer50 font">
+	<div class="row">
+		<div class="col md-8">
+			<img class = "right-margin" src="/media/desktop-pics/hotel-lobby-470x259.jpg" height="200px" width="110%">
+		</div>
+		<div class="col md-4 background">
+			<h3>Renting Made Simple</h3>
+			<p>Browse the highest quality listings, apply online, sign your lease, and even pay your rent from any device.</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col md-4 background">
+			<h3>Find Your Next Renter</h3>
+			<p>Connect with millions of renters and lease your property 100% online</p>
+		</div>
+		<div class="col md-8">
+			<img src="/media/desktop-pics/hotel-lobby-470x259.jpg" height="200px" width="110%">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col md-8">
+			<img src="/media/desktop-pics/hotel-lobby-470x259.jpg" height="200px" width="110%">
+		</div>
+		<div class="col md-4 background">
+			<h3>Tips for Renters</h3>
+			<p>Find answers to all of your renting questions with the best renter’s guide in the galaxy.</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col md-4 background">
+			<h3>Tips for Renters</h3>
+			<p>Find answers to all of your renting questions with the best renter’s guide in the galaxy.</p>
+		</div>
+		<div class="col md-8">
+			<img src="/media/desktop-pics/hotel-lobby-470x259.jpg" height="200px" width="110%">
+		</div>
+	</div>
+</div>
 
+<footer class="w3-center w3-black w3-padding-64 top-buffer50">
+	<a href="#" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+	<div class="w3-xlarge w3-section">
+	  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+	  <i class="fa fa-instagram w3-hover-opacity"></i>
+	  <i class="fa fa-snapchat w3-hover-opacity"></i>
+	  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+	  <i class="fa fa-twitter w3-hover-opacity"></i>
+	  <i class="fa fa-linkedin w3-hover-opacity"></i>
+	</div>
+</footer>
 {% endblock content %}
 
 

@@ -1,0 +1,38 @@
+{% extends "pages/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<style>
+    .left-margin{
+        margin-left: 10px;
+    }
+    .top-margin{
+        margin-top: 25px;
+    }
+</style>
+
+<div class="container">
+    <div class="content-section top-margin">
+        <legend class="border-bottom mb-4 left-margin">Register Complaints</legend>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <div class="form-row left-margin">
+                    <div class="form-group col-md-6 mb-2">
+                        {{c_form.complaint_type|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group col-md-6 mb-2">
+                        {{c_form.complaint|as_crispy_field}}
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info left-margin" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

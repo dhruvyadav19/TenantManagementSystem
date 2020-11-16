@@ -1,0 +1,38 @@
+{% extends "pages/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<style>
+    .left-margin{
+        margin-left: 20px;
+    }
+</style>
+
+<div class="container">
+    <div class="content-section">
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Username</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Second Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Contact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">{{user.username}}</th>
+            <td>{{profile.firstName}}</td>
+            <td>{{profile.secondName}}</td>
+            <td>{{user.email}}</td>
+            <td>{{profile.contact}}</td>
+          </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+  
+  
+
+{% endblock content %}
