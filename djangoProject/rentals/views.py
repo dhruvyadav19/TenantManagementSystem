@@ -7,8 +7,9 @@ from django.contrib.auth.models import User
 from datetime import date
 from users.models import Profile
 from houses.forms import ContractCreationForm
-from .models import Payment
-from .forms import PayRentForm
+from .models import Payment, Complaint
+from .forms import PayRentForm, ComplaintsForm
+from users.forms import UserUpdateForm, ProfileUpdateForm
 
 # Create your views here.
 @login_required
@@ -144,5 +145,31 @@ def pay_rent(request,single_slug):
     }
 
     return render(request,'rentals/pay_rent.html',context)
+
+@login_required
+def contact_owner(request, single_slug):
+    house = House.objects.get(id=single_slug)
+    user = house.user
+    profile = user.profile
+    return render(request, 'rentals/contact_owner.html', {'user':user,
+                                                          'profile':profile})
+
+@login_required
+def complaints(request, single_slug):
+    my_house = House.objects.get(id=single_slug)
+    if request.method == 'POST': 
+        complaints_form = ComplaintsForm(request.POST)
+        #print('error')
+        if complaints_form.is_valid():
+            complaints_form = complaints_form.save(commit=False)
+            complaints_form.house_id = my_house.id
+            complaints_form.save()
+            messages.success(request, f'Your Complaint has been successfully added')
+            return redirect('house-info', single_slug=single_slug)
+    else:
+        complaints_form = ComplaintsForm()
+
+    return render(request, 'rentals/complaints.html', {'c_form': complaints_form})
+
 
 
