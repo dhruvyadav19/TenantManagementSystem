@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 	.top-buffer220{
 		margin-top: 220px;
 	}
@@ -17,6 +19,12 @@
 	}
 	.background{
 		background-color: #ECECE0;
+	}
+	.right-margin{
+		margin-right: 100px;
+	}
+	.font{
+		font: montserrat;
 	}
 </style>
 
@@ -33,7 +41,7 @@
 		</form>
 	</div>
 
-	<div class="row top-buffer220">
+	<div class="row top-buffer220 font">
 		<legend class="align-centre">Trending Properties</legend>
 		<br>
 		<div class="col">
@@ -80,10 +88,10 @@
 </div>
 
 
-<div class="container top-buffer50">
+<div class="container top-buffer50 font">
 	<div class="row">
 		<div class="col md-8">
-			<img src="/media/desktop-pics/hotel-lobby-470x259.jpg" height="200px">
+			<img class = "right-margin" src="/media/desktop-pics/hotel-lobby-470x259.jpg" height="200px" width="110%">
 		</div>
 		<div class="col md-4 background">
 			<h3>Renting Made Simple</h3>
@@ -91,19 +99,19 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col md-6 background">
+		<div class="col md-4 background">
 			<h3>Find Your Next Renter</h3>
 			<p>Connect with millions of renters and lease your property 100% online</p>
 		</div>
-		<div class="col md-6">
-			<img src="/media/desktop-pics/hotel-lobby-470x259.jpg" height="200px">
+		<div class="col md-8">
+			<img src="/media/desktop-pics/hotel-lobby-470x259.jpg" height="200px" width="110%">
 		</div>
 	</div>
 	<div class="row">
-		<div class="col md-6">
-			<img src="/media/desktop-pics/hotel-lobby-470x259.jpg" height="200px">
+		<div class="col md-8">
+			<img src="/media/desktop-pics/hotel-lobby-470x259.jpg" height="200px" width="110%">
 		</div>
-		<div class="col md-6 background">
+		<div class="col md-4 background">
 			<h3>Tips for Renters</h3>
 			<p>Find answers to all of your renting questions with the best renter’s guide in the galaxy.</p>
 		</div>
@@ -114,13 +122,13 @@
 			<p>Find answers to all of your renting questions with the best renter’s guide in the galaxy.</p>
 		</div>
 		<div class="col md-8">
-			<img src="/media/desktop-pics/hotel-lobby-470x259.jpg" height="200px" width=auto>
+			<img src="/media/desktop-pics/hotel-lobby-470x259.jpg" height="200px" width="110%">
 		</div>
 	</div>
 </div>
 
 <footer class="w3-center w3-black w3-padding-64 top-buffer50">
-	<a href="{% url 'about-view' %}" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+	<a href="#" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
 	<div class="w3-xlarge w3-section">
 	  <i class="fa fa-facebook-official w3-hover-opacity"></i>
 	  <i class="fa fa-instagram w3-hover-opacity"></i>
