@@ -6,7 +6,7 @@
 
   .content1{
     display: grid;
-    font-family: 'Nunito Semibold';
+
 
     grid-template-columns: repeat(3, 1fr);
     max-width: 1800px;
@@ -14,7 +14,7 @@
   }
   .content1 div{
     background-color: white;
-    padding: 25px;
+
   }
   .card-title, .card-text{
     color: #606060;
@@ -25,12 +25,6 @@
     color: white;
     text-align: center;
   }
-  .card-title{
-  font-size: 25px;
-  }
-  .card-text{
-  font-size: 20px;
-  }
 
 </style>
   <div class="container">
@@ -40,19 +34,19 @@
     <legend >No Houses Found</legend>
   {% else %}
   <div class="content1">
-  {% for obj in house %}
-        <div class="col-sm-12">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{{obj.house_number}},   {{obj.city}},  {{obj.state}},  {{obj.landmark}}</h5>
-
-              <p class="card-text">Rent : <strong>Rs {{obj.rent}}</strong></p>
-              <br>
-                <a href="{{obj.id}}" class="btn btn-primary">More Info</a>
-            </div>
-          </div>
-        </div>
-  {% endfor %}
+  {% for each_house,each_image in house %}
+      <div class="col-md-4 mb-4">
+			<div class="card" style="width: 20rem;">
+			  <img class="card-img-top" src={{each_image.image.url}} alt="Card image cap">
+			  <div class="card-body">
+				<h5 class="card-title"><strong>Rent: Rs {{each_house.rent}}</strong></h5>
+				<p class="card-text">{{each_house.house_number}}, {{each_house.landmark}}, {{each_house.city}}</p>
+                  <p class="card-text">{{each_house.beds}} BHK</p>
+				<a href="{{each_house.id}}/" class="btn btn-primary">More Info</a>
+			  </div>
+		    </div>
+      </div>
+    {% endfor %}
   </div>
   {% endif %}
   </div>

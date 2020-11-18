@@ -1,0 +1,48 @@
+{% extends 'pages/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+    p{
+    font-size:20px;
+    color: 	#585858l
+    }
+
+</style>
+<div class="container">
+    <div class="content-section">
+        <legend class="border-bottom mb-4">Complaints</legend>
+        <br><br>
+
+        <table class="table table-bordered">
+          <thead class="thead-light">
+            <tr class="table-info">
+              <th scope="col">Tenant Username</th>
+                <th scope="col">Email</th>
+                <th scope="col"> Complaint Date</th>
+              <th scope="col">Complaint Type</th>
+              <th scope="col">Complaint</th>
+            </tr>
+          </thead>
+
+          <tbody>
+                {% for each_complaint in complaints %}
+            <tr>
+
+                <th scope="row">{{tenant.username}}</th>
+              <!--<td>{{tenant.username}}</td>-->
+              <td>{{tenant.email}}</td>
+                <td>{{each_complaint.complaint_date|date:"N d, Y"}}</td>
+                <td>{{each_complaint.complaint_type}}</td>
+                <td>{{each_complaint.complaint}}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+
+{% endblock content %}

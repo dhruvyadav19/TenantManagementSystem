@@ -18,15 +18,16 @@ class Payment(models.Model):
 class Complaint(models.Model):
     house = models.ForeignKey(House, on_delete=models.CASCADE, default=19)
     complaints_choices = [
-        ('EL', "Electrical"),
-        ('PL', "Plumbing"),
-        ('RE', "Repairing"),
-        ('IN', "Internet"),
-        ('OT', "Other"),
+        ('Electrical', "Electrical"),
+        ('Plumbing', "Plumbing"),
+        ('Repairing', "Repairing"),
+        ('Internet', "Internet"),
+        ('Other', "Other"),
     ]
+    complaint_date = models.DateTimeField(auto_now_add=True)
     complaint_type = models.CharField(max_length=200,
                                       choices = complaints_choices,
-                                      default='OT')
+                                      default='Other')
     complaint = models.CharField(max_length=200)
 
     def __str__(self):

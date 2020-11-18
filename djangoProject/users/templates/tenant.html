@@ -1,9 +1,0 @@
-{% extends "pages/base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
-
-{% for obj in tenant %}
-    <p>{{obj.user}} {{obj.house}} {{obj.due_date}} {{obj.complaint_type}} {{obj.complaint}}</p>
-{% endfor %}
-
-{% endblock content %}

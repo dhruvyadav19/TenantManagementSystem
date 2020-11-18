@@ -28,7 +28,7 @@ def rent_house(request, single_slug):
                 payment_obj = Payment.objects.create(house=this_house,start_date=today_date,is_rent_due=True,total_amount_paid=0,tenant_id=request.user.id
                                        , due_money = this_house.rent, last_payment_date = None)
                 payment_obj.save()
-                messages.success(request,f'Congratulations! The Contract Agreement was Successful')
+                messages.success(request,f'Congratulations! The Contracpythont Agreement was Successful')
                 return redirect('pay-rent-view',single_slug=single_slug)
             else:
                 messages.warning(request,f'Incorrect Information, Please Try Again')
@@ -54,9 +54,16 @@ def rent_house(request, single_slug):
 
 @login_required
 def view_rented_house(request):
-    data = House.objects.filter(tenant_id = request.user.id)
+    allHouses = House.objects.filter(tenant_id = request.user.id)
+    allImages = []
+    for each_house in allHouses:
+        image = Image.objects.filter(house_id=each_house.id).first()
+        allImages.append(image)
+    allCombined = []
+    for i in range(len(allImages)):
+        allCombined.append((allHouses[i], allImages[i]))
     context = {
-        "house" : data
+        'house': allCombined
     }
     return render(request,'rentals/view_rented_houses.html', context)
 
@@ -170,6 +177,22 @@ def complaints(request, single_slug):
         complaints_form = ComplaintsForm()
 
     return render(request, 'rentals/complaints.html', {'c_form': complaints_form})
+
+@login_required
+def view_complaints(request,single_slug):
+    allComplaints = Complaint.objects.filter(house_id = single_slug)
+    myHouse = House.objects.get(id = single_slug)
+    tenant = User.objects.get(id = myHouse.tenant_id)
+    context = {
+        'complaints' : allComplaints,
+        'house' : myHouse,
+        'tenant' : tenant
+    }
+
+    return render(request, 'rentals/view_complaints.html',context)
+
+
+
 
 
 

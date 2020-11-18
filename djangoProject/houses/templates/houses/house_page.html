@@ -181,7 +181,6 @@
           {% if user.id == house.user_id %}
           <a href="update_house/" class="btn btn-primary mb-3" role="button">Update House!</a>
           <a href="delete_house/" class="btn btn-danger mb-3" role="button">Delete House!</a>
-          <a href="#" class="btn btn-primary" role="button">View Complaints!</a>
           {% elif user.id == house.tenant_id %}
           <a href="pay-rent/" class="btn btn-primary mb-3" role="button">Pay Rent!</a>
           <a href="vacate-house/" class="btn btn-danger mb-3" role="button" >Vacate House!</a>
