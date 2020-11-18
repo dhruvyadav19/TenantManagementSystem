@@ -11,9 +11,16 @@ from datetime import date
 # Create your views here.
 @login_required
 def house_view(request):
-    data = House.objects.filter(user=request.user)
+    allHouses = House.objects.filter(user=request.user)
+    allImages = []
+    for each_house in allHouses:
+        image = Image.objects.filter(house_id=each_house.id).first()
+        allImages.append(image)
+    allCombined = []
+    for i in range(len(allImages)):
+        allCombined.append((allHouses[i], allImages[i]))
     context = {
-        'house': data
+        'house': allCombined
     }
     return render(request, 'houses/view_houses.html', context)
 
@@ -64,6 +71,7 @@ def update_house(request, single_slug):
 
 def house_info(request, single_slug):
     houses = [h.id for h in House.objects.all()]
+    print(single_slug)
     if int(single_slug) in houses:
         this_house = House.objects.get(id=int(single_slug))
         image_src = Image.objects.filter(house__id=single_slug)

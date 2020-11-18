@@ -6,7 +6,7 @@ from django.urls import path,include
 from users.views import register_view, profile_view, delete_user
 from django.contrib.auth import views as auth_views
 from houses.views import house_view,add_house_view,house_info,update_house, delete_house
-from rentals.views import rent_house, view_rented_house, vacate_house, tenant_report, pay_rent, contact_owner, complaints
+from rentals.views import rent_house, view_rented_house, vacate_house, tenant_report, pay_rent, contact_owner, complaints, view_complaints
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,12 +27,14 @@ urlpatterns = [
     path('view-rented-house/',view_rented_house, name='rented-house-view'),
     path('view-rented-house/<single_slug>/', house_info, name = 'house-info'),
     path('view-rented-house/<single_slug>/vacate-house/',vacate_house,name = 'vacate-house-view'),
-    path('tenant-report',tenant_report, name = 'tenant-report-view'),
+    path('tenant-report/',tenant_report, name = 'tenant-report-view'),
     path('search/<single_slug>/pay-rent/',pay_rent,name = 'pay-rent-view'),
     path('view-rented-house/<single_slug>/pay-rent/',pay_rent,name = 'pay-rent-view'),
     path('search/<single_slug>/contact_owner/',contact_owner,name = 'contact-owner-view'),
     path('search/<single_slug>/register_complaints/',complaints,name = 'register-complaints'),
     path('view-rented-house/<single_slug>/register_complaints/',complaints,name = 'register-complaints'),
+    path('tenant-report/view-complaint/<single_slug>/',view_complaints, name = 'view-complaints')
+
 ]
 
 if settings.DEBUG:

@@ -16,6 +16,8 @@
 	}
 	.align-centre{
 		text-align: center;
+		font-weight: 400px;
+		font-size: 50px;
 	}
 	.background{
 		background-color: #ECECE0;
@@ -26,108 +28,130 @@
 	.font{
 		font: montserrat;
 	}
+	.grid-container {
+  display: grid;
+  grid-template-columns: 100px 650px 650px 100px;
+  background-color: light-grey;
+  padding: 10px;
+}
+.grid-item {
+  background-color: #F5F5F5;
+  /*border: 1px solid rgba(0, 0, 0, 0.8);*/
+  padding: 60px ;
+}
+.grid-item .heading-grid{
+	color: black;
+	font-size: 30px;
+}
+.heading-grid-info{
+	color: #787878;
+	font-size: 15px;
+}
+.grid-item-img {
+  background-color: white;
+  /*border: 1px solid rgba(0, 0, 0, 0.8);*/
+  padding: 0px ;
+}
+/*.grid-corners{
+background-color: white;
+}*/
+.btn-lg{
+	padding: 10px;
+	width: 140px;
+}
 </style>
 
-<div class="container-fluid">
+<img src="/static/images/img1.jpg" height="500px" width="100%" class="background-img">
+<h1 class="banner">Discover Your New Home</h1>
+
+<form action="/search" class="search-bar" method = "get">
+	<input type="search" id = "query" name="query" pattern=".*\S.*" required>
+	<button class="search-btn" type="submit">
+		<span>Search</span>
+	</button>
+</form>
+<br><br><br><br><br><br><br><br><br><br>
+<h1 class="align-centre">Trending Properties</h1>
+<br><br>
+<div class="container">
 	<div class="row">
-		<img src="/static/images/img1.jpg" height="500px" width="100%" class="background-img">
-		<h1 class="banner">Discover Your New Home</h1>
-
-		<form action="/search" class="search-bar" method = "get">
-			<input type="search" id = "query" name="query" pattern=".*\S.*" required>
-			<button class="search-btn" type="submit">
-				<span>Search</span>
-			</button>
-		</form>
+		<div class="col-md-1"></div>
+		{% for each_house,each_image in house %}
+			<div class="card mr-4" style="width: 20rem;">
+			  <img class="card-img-top" src={{each_image.image.url}} alt="Card image cap">
+			  <div class="card-body">
+				<h5 class="card-title"><strong>Rent: Rs {{each_house.rent}}</strong></h5>
+				<p class="card-text">{{each_house.house_number}}, {{each_house.landmark}}, {{each_house.city}}</p>
+				<a href="search/{{each_house.id}}/" class="btn btn-primary">More Info</a>
+			  </div>
+		</div>
+		{% endfor %}
 	</div>
+</div>
+<!--<br><br><br>
+<div class="text-center">
+	<a class="btn btn-primary btn-lg" href="#" role="button">See More</a>
+</div>-->
+<br><br><br>
+<legend class="border-bottom mb-4"></legend>
+<br><br>
 
-	<div class="row top-buffer220 font">
-		<legend class="align-centre">Trending Properties</legend>
-		<br>
-		<div class="col">
-			<div class="card" style="width: 18rem;">
-				<img src="..." class="card-img-top" alt="...">
-				<div class="card-body">
-				  <h5 class="card-title">Card title</h5>
-				  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				  <a href="#" class="btn btn-primary">Go somewhere</a>
-				</div>
-			</div>
-		</div>
-		<div class="col">
-			<div class="card" style="width: 18rem;">
-				<img src="..." class="card-img-top" alt="...">
-				<div class="card-body">
-				  <h5 class="card-title">Card title</h5>
-				  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				  <a href="#" class="btn btn-primary">Go somewhere</a>
-				</div>
-			</div>
-		</div>
-		<div class="col">
-			<div class="card" style="width: 18rem;">
-				<img src="..." class="card-img-top" alt="...">
-				<div class="card-body">
-				  <h5 class="card-title">Card title</h5>
-				  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				  <a href="#" class="btn btn-primary">Go somewhere</a>
-				</div>
-			</div>
-		</div>
-		<div class="col">
-			<div class="card" style="width: 18rem;">
-				<img src="..." class="card-img-top" alt="...">
-				<div class="card-body">
-				  <h5 class="card-title">Card title</h5>
-				  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				  <a href="#" class="btn btn-primary">Go somewhere</a>
-				</div>
-			</div>
-		</div>
-	</div>
+
+
+
+<div class="grid-container">
+  <div class="grid-item-img"></div>
+  <div class="grid-item">
+	 <legend class="heading-grid">Connect With Our Family</legend>
+	  <p class="heading-grid-info">Sign Up to find your new home, add multiple properties, Pay rent online and much more </p>
+  </div>
+  <div class="grid-item-img">
+	<img src="/static/images/connect.jpg" width="100%" height="250px">
+  </div>
+  <div class="grid-item-img"></div>
+  <div class="grid-item-img"></div>
+  <div class="grid-item-img">
+  	<img src="/static/images/add_property.jpg" width="100%" height="250px">
+  </div>
+  <div class="grid-item">
+	  <legend class="heading-grid">Add Your Property Here</legend>
+	  <p class="heading-grid-info">Connect with renters and lease your property online</p>
+	  <a href="{% url 'add-house-view' %}" class="btn btn-secondary" role="button" >Add House</a>
+  </div>
+  <div class="grid-item-img"></div>
+  <div class="grid-item-img"></div>
+	<div class="grid-item">
+
+		<legend class="heading-grid">Manage Your Tenants</legend>
+	  <p class="heading-grid-info">Monitor Dues and other details of your tenants</p>
+		<a href="{% url 'tenant-report-view' %}" class="btn btn-secondary" role="button" >My Tenats</a>
+  </div>
+	<div class="grid-item-img">
+  	<img src="/static/images/manage_tenant.jpg" width="100%" height="250px">
+  </div>
+	<div class="grid-item-img"></div>
+  <div class="grid-item"></div>
+	<div class="grid-item-img">
+  	<img src="/static/images/about_us.jpg" width="100%" height="250px">
+  </div>
+	<div class="grid-item">
+	 <legend class="heading-grid">Learn More About us</legend>
+		<a href="{% url 'about-view' %}" class="btn btn-secondary" role="button" >About Us</a>
+  </div>
+
+
 </div>
 
 
-<div class="container top-buffer50 font">
-	<div class="row">
-		<div class="col md-8">
-			<img class = "right-margin" src="/media/desktop-pics/hotel-lobby-470x259.jpg" height="200px" width="110%">
-		</div>
-		<div class="col md-4 background">
-			<h3>Renting Made Simple</h3>
-			<p>Browse the highest quality listings, apply online, sign your lease, and even pay your rent from any device.</p>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col md-4 background">
-			<h3>Find Your Next Renter</h3>
-			<p>Connect with millions of renters and lease your property 100% online</p>
-		</div>
-		<div class="col md-8">
-			<img src="/media/desktop-pics/hotel-lobby-470x259.jpg" height="200px" width="110%">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col md-8">
-			<img src="/media/desktop-pics/hotel-lobby-470x259.jpg" height="200px" width="110%">
-		</div>
-		<div class="col md-4 background">
-			<h3>Tips for Renters</h3>
-			<p>Find answers to all of your renting questions with the best renter’s guide in the galaxy.</p>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col md-4 background">
-			<h3>Tips for Renters</h3>
-			<p>Find answers to all of your renting questions with the best renter’s guide in the galaxy.</p>
-		</div>
-		<div class="col md-8">
-			<img src="/media/desktop-pics/hotel-lobby-470x259.jpg" height="200px" width="110%">
-		</div>
-	</div>
-</div>
 
-<footer class="w3-center w3-black w3-padding-64 top-buffer50">
+
+
+
+
+
+
+
+<footer class="w3-center w3-grey w3-padding-64 top-buffer50">
 	<a href="#" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
 	<div class="w3-xlarge w3-section">
 	  <i class="fa fa-facebook-official w3-hover-opacity"></i>
@@ -139,5 +163,3 @@
 	</div>
 </footer>
 {% endblock content %}
-
-

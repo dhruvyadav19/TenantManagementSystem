@@ -37,6 +37,7 @@
                 <th scope="col">Last Payment Date</th>
                 <th scope="col">Dues</th>
                 <th scope="col">Total Amount</th>
+                <th scope="col">Complaints</th>
             </tr>
           </thead>
           <tbody>
@@ -50,8 +51,10 @@
                 <td>{{payment.last_payment_date|date:"N d, Y"}}</td>
                 <td>Rs. {{payment.due_money}}</td>
                 <td>Rs. {{payment.total_amount_paid}}</td>
+                <td><a href="view-complaint/{{house.id}}/" class="btn btn-primary" role="button">View Complaints!</a></td>
           </tbody>
         </table>
+
         <legend class="border-bottom mb-4"></legend>
         <br><br>
         {% endfor %}
