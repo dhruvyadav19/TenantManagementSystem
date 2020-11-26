@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxLengthValidator, MinLengthValidator
 # Create your models here.
 class House(models.Model):
     house_number = models.CharField(max_length=200)
@@ -18,7 +19,7 @@ class House(models.Model):
                                     default='AP')
     balcony = models.IntegerField()
     beds = models.IntegerField()
-    pincode = models.IntegerField()
+    pincode = models.CharField(max_length=6, validators=[MaxLengthValidator(limit_value=6), MinLengthValidator(limit_value=6)])
     rent = models.IntegerField()
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     tenant_id = models.IntegerField(null=True, blank=True)
